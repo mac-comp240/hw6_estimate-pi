@@ -25,13 +25,14 @@ weak_scale_lines=$3
 # Note: you should set the problem sizes that you want to run for a problem.
 #       The following are fairly good for the trapezoidal rule problem
 #       and for the strong scalability problem sizes and number of threads.
-printf "trial \tproblem size \tthreads \ttime\n"
+printf "trial \tprobsiz\tthreads\t time\n"
 problem_size=$initial_size
 double=0
 
+# for line in 1,2,3,..,$weak_scale_lines
 for line in $(seq 1 $weak_scale_lines)
 do
-  echo "line: " $line
+  #echo "line: " $line
 
   # each trial will run num_times using a cretain number of threads
   for num_threads in 1 2 4 8 16
@@ -67,7 +68,7 @@ do
   printf "\n"
 
   # set the next starting problem size for the next weak sclability line
-  double=$(( 2**$line ))
-  problem_size=$(( $initial_size*$double ))
+  double=$(( 2**$line )) # 2 ^ $line
+  problem_size=$(( $initial_size*$double )) # problem size double each line
 
 done    # number of weak scale lines

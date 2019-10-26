@@ -4,9 +4,9 @@
  - [x] Copy in relevant files from Libby's version on wulver server
 
 2. Figure out the test scripts
- - [ ] Compare old and new scripts and understand the differences
- - [ ] Assess whether we should delete/merge any
- - [ ] Add upload functionality from Preston's script
+ - [X] Compare old and new scripts and understand the differences
+ - [X] Assess whether we should delete/merge any
+ - [X] Add upload functionality from Preston's script
 
 3. Test the scripts with real values
  - [ ] Write a correct solution to the problem

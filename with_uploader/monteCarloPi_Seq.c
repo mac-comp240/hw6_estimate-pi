@@ -48,11 +48,11 @@ int main(int argc, char** argv) {
     time_spent = end - begin;
 
     // Comment these lines out before uploading your results
-    printf("Calculation of pi using %ld samples: %15.14lf\n", numSamples, pi);
-    printf("Accuracy of pi calculation: %lf\n", pi - PI);
-    printf("Time spent: %15.12lf seconds\n", time_spent);
+    // printf("Calculation of pi using %ld samples: %15.14lf\n", numSamples, pi);
+    // printf("Accuracy of pi calculation: %lf\n", pi - PI);
+    // printf("Time spent: %15.12lf seconds\n", time_spent);
 
     // For uploadable output, uncomment the line below.
-    // printf("%15.12lf ", time_spent);
+    printf("%15.12lf ", time_spent);
 
 }

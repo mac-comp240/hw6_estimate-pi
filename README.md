@@ -104,24 +104,13 @@ results. If they don't there is something wrong with your parallel code.
 
     numThreads, numSamples, time_spent, accuracy
 
-## Run experiments
+## Run your code, record results
 
-You will want to create a shell script to run your code several times for each
-case you choose. You may end up deciding to show all of them in your report, and
-to also show a subset of them as a separate digram in your report, choosing
-ultimately the ones that best illustrate the sppedup and scalability of this
-program.
+You are provided with two shell scripts that will run your code in batches.
+Examine the scripts to see how they work.
 
-The shell scripts from the trapazoidal rule activity example is given to you in
-the hw6 directory. **You will need to update these scripts to use them for this
-problem.**
-
-You should choose problem sizes that give varying amounts of accuracy of pi, up
-to the most we can do because of how `rand_r` behaves.
-
-For the omp version of your code, you should vary the threads from 2 to some
-size that makes sense. (After a certain number of threads, which varies by
-problem size, there are no more gains in speedup.)
-
-Use the sequential version you were given to gather the timing numbers for the
-sequential case.
+Additionally, one of your preceptors has written a script that will
+automatically upload your code's output to Google Sheets using the Google Drive
+API. You can find that in `upload_script/`. We didn't get around to documenting
+it with a README this semester, but give it a try with a test sheet using the
+directions in the comments.

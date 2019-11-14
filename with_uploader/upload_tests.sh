@@ -2,7 +2,7 @@
 
 # Runs and uploads the results of a series of tests
 
-# Author: Libby Shoop
+# Author: Libby Shoop, Modified by Preston Locke and Abby Marsh
 
 # Usage:
 #          bash ./upload_tests.sh 4 kj2l3k2h34l5kh3ljlkhk2gh34 R11:V75
@@ -28,9 +28,9 @@ do
   do
 
     if [  "$num_threads" == "1"  ]; then
-      command="./monteCarloPi_Seq $problem_size"
+      command="../monteCarloPi_Seq $problem_size"
     else
-      command="./monteCarloPi_omp $problem_size $num_threads"
+      command="../monteCarloPi_omp $problem_size $num_threads"
     fi
 
     counter=1

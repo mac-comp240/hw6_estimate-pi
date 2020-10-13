@@ -61,7 +61,7 @@ Spend some time determining what problems sizes as powers of 2 give how many
 digits of accuracy for pi. Record the precision (number of accurate digits of
 pi) for each problem size (read on to see how far you can go).
 
-**IMPORTANT: ** Please note that just like the older C  `rand_r` function, even the C++ distribution classes can only create a certain number of random numbers. On our server using g++, the std::uniform_real_distribution<double> class can create MAX_INT different real numbers. Therefore, highest number of 'throws' or 'trials' of x,y values you can us is 2147483647.
+**IMPORTANT:** Please note that just like the older C  `rand_r` function, even the C++ distribution classes can only create a certain number of random numbers. On our server using g++, the std::uniform_real_distribution<double> class can create MAX_INT different real numbers. Therefore, highest number of 'throws' or 'trials' of x,y values you can us is 2147483647.
 
 You must stop at this number. You can try this if you like- the sequential version takes about 5 minutes, so you will need to be patient. Starting from 4194304, how long do some of the powers of 2 problem sizes take? 
 

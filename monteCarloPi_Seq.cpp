@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <random>        // newer C++ library with better ways 
+                         // of generating random numbers of variaous types
+#include <omp.h>         // use omp version of timing functions
 
 #define DEFAULT_THROWS 500000
 #define PI     3.1415926535
@@ -11,7 +14,7 @@ int main(int argc, char** argv) {
     double x, y;                //hold x,y position of each sample 'throw'
 
     // We will use these to time our code
-    clock_t begin, end;
+    double begin, end;
     double time_spent;
 
     // take in how many 'throws', or samples
@@ -22,20 +25,29 @@ int main(int argc, char** argv) {
     // print "problem size" for debugging
     //printf("Number of throws: %ld\n", numSamples);
 
+    begin = omp_get_wtime();  // start the timing
+
     // set seeds for the random number generator
     // for both an x and y position
-    unsigned int seedx = (unsigned) time(NULL)+ 120975;
-    unsigned int seedy = (unsigned) time(NULL)- 120975;
-    srand(seedx);
-    srand(seedy);
+    // Note: two seeds needed because we have to get a random
+    //       x, y position
+    std::random_device rd; 
+    unsigned long seedx = rd();
+    unsigned long seedy = rd();
+    
+    // create two generators and seed each one
+    std::mt19937_64 generatorX;   //declaration of a generator
+    generatorX.seed(seedx);
+    std::mt19937_64 generatorY;   //declaration of a generator
+    generatorY.seed(seedy);
 
-
-    begin = clock();  // start the timing
-///////////  work being done that we will time
+    // declare a distribution of real numbers that we want
+    std::uniform_real_distribution<double> distribution(0.0,1.0);
+    
     for(int n=0; n<numSamples; n++) {
       // generate random numbers between 0.0 and 1.0
-      x = (double)rand_r(&seedx)/(double)RAND_MAX;
-      y = (double)rand_r(&seedy)/(double)RAND_MAX;
+      x = distribution(generatorX);
+      y = distribution(generatorY);;
 
       if ( (x*x + y*y) <= 1.0 ) {
         numInCircle++;
@@ -43,9 +55,10 @@ int main(int argc, char** argv) {
     }
 
     double pi = 4.0 * (double)(numInCircle) / (numSamples);
+
 // completion of work
-    end = clock();  // end the timing
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    end = omp_get_wtime();  // end the timing
+    time_spent = end - begin;
 
     printf("Calculation of pi using %ld samples: %15.14lf\n", numSamples, pi);
     printf("Accuracy of pi calculation: %lf\n", pi - PI);

@@ -110,6 +110,6 @@ You are provided with two shell scripts that will run your code in batches. Exam
 
 Only after you are satisfied that you have picked good problem sizes should you work through how to get the results into a spreadsheet document like what you used for the activities. At this point you might want to remove the printing of the accuracy values and just have these, like was done for the activity:
 
-    numThreads, numSamples, time_spent, accuracy
+    numThreads, numSamples, time_spent
 
 OPTIONAL: Additionally, one of our past preceptors has written a script that will automatically upload your code's output to Google Sheets using the Google Drive API. You can find that in `upload_script/`. We didn't get around to documenting it with a README this semester, but if you want a challenge, give it a try with a test sheet using the directions in the comments.

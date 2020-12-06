@@ -2,12 +2,13 @@
 
 In this assignment, you will write a parallel program that estimates the value of pi using the monte carlo method. You will run your program many times on different input values in order to examine two parallel programming concepts: **speedup** and **efficiency**.  You will also analyze the strong and weak scalability of your solution.
 
-For this assignment, you will be working in pairs and turning in a written report.
+For this assignment, you will be working in pairs and turning in a written report. You can choose to work individually also.
 
 ## Report Criteria
 
-Turn in a written report to Moodle (one per group, please) with the following
-content:
+You can write your report in the shared Google Drive folder that you instructor sets up for you. Having the report as a Google doc in that directory constitutes turning it in. You should keep your original data spreadsheet there also.
+
+Your written report should have the following content:
 
 -   Team member names
 -   location of code on GitHub (which user account to look at)
@@ -59,9 +60,9 @@ Study the code so you understand it. Note that we are determining how many digit
 
 Spend some time determining what problems sizes as powers of 2 give how many
 digits of accuracy for pi. Record the precision (number of accurate digits of
-pi) for each problem size (read on to see how far you can go).
+pi) for each problem size (read on to see how far you can go). Try more than one execution of the code, because you will notice that the accuracy can vary. (You will never get really good accuracy, but you should see it improve with increase in problem size, and you should see it be poor and very a lot at very small problem sizes, because you are covering less of the 'unit circle' with 'throws' or 'trials'.)
 
-**IMPORTANT:** Please note that just like the older C  `rand_r` function, even the C++ distribution classes can only create a certain number of random numbers. On our server using g++, the std::uniform_real_distribution<double> class can create MAX_INT different real numbers. Therefore, highest number of 'throws' or 'trials' of x,y values you can us is 2147483647.
+**IMPORTANT:** Please note that just like the older C  `rand_r` function, even the C++ distribution classes can only create a certain number of random numbers. On our server using g++, the std::uniform_real_distribution<double> class can create MAX_INT different real numbers. Therefore, highest number of 'throws' or 'trials' of x,y values you can use is 2147483647.
 
 You must stop at this number. You can try this if you like- the sequential version takes about 5 minutes, so you will need to be patient. Starting from 4194304, how long do some of the powers of 2 problem sizes take? 
 
@@ -83,23 +84,32 @@ original.** They can be summarized as follows:
   `monteCarloPi_omp`
 - take in the number of threads from command line
 - change seeds so there is one per thread in an array. Use the rand_demo.cpp code from an activity as your guide (function parallelGenRandValues()).  Ensure that you have the main thread create the array of seeds first, containing a different value for each thread.
-- Use to `omp_get wtime()` for timing
+- Remember also from the random number activity that when generating more than one random number in a loop, you should use one C++ generator variable (including seeding it) and two different distribution variables that use that same generator.
+- Use  `omp_get wtime()` for timing
 - add pragmas for OpenMP. Note that you will need to worry about what shared variables need to be reduced. You can again use rand_demo.cpp as a guide for the pragmas.
+
+### Test by hand with printing as it exists
 
 Then you will want to make sure the code is correct and also spend some more
 time determining what problem sizes as powers of 2 give how many digits of
-accuracy for pi. Make sure the results for accuracy match the sequential
-results. If they don't, there is something wrong with your parallel code.
-
-- fix up printing to print out data as comma-separated list:
-
-    numThreads, numSamples, time_spent, accuracy
-
+accuracy for pi. Make sure the results for accuracy of the parallel version match the sequential results. If they don't, there is something wrong with your parallel code.
 
 ## Run your code, record results
 
 Run several trials of your sequential and parallel versions to see what sizes of number of trials seem to have some strong scalability and which ones aren't quite as good. Your results should include both good strongly scalable problems sizes at certain numbers of threads, and some that don't do quite as well, so that you can provide a good analysis about what works and what doesn't.
 
-You are provided with two shell scripts that will run your code in batches. Examine the scripts to see how they work. **You will want to change the problem sizes you choose to run.** Temporary problems sizes are given in the scripts. Work through how to get the results into a spreadsheet document like what you used for the activities.
+### Change printing so scripts work well
+
+- Before running your formal tests, you should fix up printing to print out data as comma-separated (or tab-separated) list:
+
+    numThreads, numSamples, time_spent, accuracy
+
+You can  omit the accuracy eventually, but it helps to keep it while you run trials of the scripts just to be certain that you have a sense of which problem sizes give you proper accuracy (lower problem sizes may not).
+
+You are provided with two shell scripts that will run your code in batches. Examine the scripts to see how they work. **You will want to change the problem sizes you choose to run.** Temporary problems sizes are given in the scripts. Experiment with a range of problem sizes (different for each of the scripts) and run the script with just a few trials (2-3) to get a sense of the accuracy and the scalability. (Ask you instructor if you are struggling with this.)
+
+Only after you are satisfied that you have picked good problem sizes should you work through how to get the results into a spreadsheet document like what you used for the activities. At this point you might want to remove the printing of the accuracy values and just have these, like was done for the activity:
+
+    numThreads, numSamples, time_spent, accuracy
 
 OPTIONAL: Additionally, one of our past preceptors has written a script that will automatically upload your code's output to Google Sheets using the Google Drive API. You can find that in `upload_script/`. We didn't get around to documenting it with a README this semester, but if you want a challenge, give it a try with a test sheet using the directions in the comments.

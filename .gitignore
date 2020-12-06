@@ -1,4 +1,16 @@
+# VS Code
+.vscode
+sftp.json
+# Atom
+.remote-sync.json
+.ftpconfig
+
+.DS_Store
+Icon?
+
+# executables
 monteCarloPi_Seq
 monteCarloPi_omp
+
 *~
 *.save

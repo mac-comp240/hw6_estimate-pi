@@ -33,21 +33,20 @@ int main(int argc, char** argv) {
     //       x, y position
     std::random_device rd; 
     unsigned long seedx = rd();
-    unsigned long seedy = rd();
+    // unsigned long seedy = rd();
     
     // create two generators and seed each one
-    std::mt19937_64 generatorX;   //declaration of a generator
-    generatorX.seed(seedx);
-    std::mt19937_64 generatorY;   //declaration of a generator
-    generatorY.seed(seedy);
-
+    std::mt19937_64 generator;   //declaration of a generator
+    generator.seed(seedx);
+    
     // declare a distribution of real numbers that we want
-    std::uniform_real_distribution<double> distribution(0.0,1.0);
+    std::uniform_real_distribution<double> distributionX(0.0,1.0);
+    std::uniform_real_distribution<double> distributionY(0.0,1.0);
     
     for(int n=0; n<numSamples; n++) {
       // generate random numbers between 0.0 and 1.0
-      x = distribution(generatorX);
-      y = distribution(generatorY);;
+      x = distributionX(generator);
+      y = distributionY(generator);;
 
       if ( (x*x + y*y) <= 1.0 ) {
         numInCircle++;

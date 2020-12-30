@@ -108,8 +108,22 @@ You can  omit the accuracy eventually, but it helps to keep it while you run tri
 
 You are provided with two shell scripts that will run your code in batches. Examine the scripts to see how they work. **You will want to change the problem sizes you choose to run.** Temporary problems sizes are given in the scripts. Experiment with a range of problem sizes (different for each of the scripts) and run the script with just a few trials (2-3) to get a sense of the accuracy and the scalability. (Ask you instructor if you are struggling with this.)
 
-Only after you are satisfied that you have picked good problem sizes should you work through how to get the results into a spreadsheet document like what you used for the activities. At this point you might want to remove the printing of the accuracy values and just have these, like was done for the activity:
+Only after you are satisfied that you have picked good problem sizes should you work through how to get the results into a spreadsheet document like what you used for the activities. At this point you might want to remove the printing of the accuracy values and just have time_spent followed by a tab, like was done for the activity:
 
-    numThreads, numSamples, time_spent
+    time_spent\t
+
+Try out the shell scripts with one or two experiments, perhaps with just a few problem sizes, to be sure they are printing correctly. Then fill out all the problem sizes to run your complete tests.
+
+### Choose good problem sizes
+
+Update `run_strong_tests.sh` to run a range of problem sizes that are powers of 2. Use a lower value that gives you reasonable accuracy, and go up to the highest value possible, 2147483647, which is one less than a power of 2. This may be a large number of problem sizes for one speedup graph, so you will want to choose to run fewer or display fewer of the problem sizes on your final graph in your report.
+
+For the weak tests script, your goal is to choose a starting problem size such that you get a good range of sizes (the script does not have to be changed). You want to have your third 'line' in the weak scalability graph to end up at a power of two **near, but not including** the maximum number of trials you can do (2147483647). Beware of starting at a problem size that is too low- testing for weak scalability often makes more sense in cases where there is some amount of strong scalability.
+
+### Run your scripts in 'the background'
+
+Please watch this [video that demonstrates a convenient that way you can run scripts like this](https://www.screencast.com/t/S78iUMzrO) that will take some time on linux. You will see how to indicate that your script should run on the machine, but give you a command line prompt back, enabling you to let it run while you go away and do other things.
+
+#### For a challenge
 
 OPTIONAL: Additionally, one of our past preceptors has written a script that will automatically upload your code's output to Google Sheets using the Google Drive API. You can find that in `upload_script/`. We didn't get around to documenting it with a README this semester, but if you want a challenge, give it a try with a test sheet using the directions in the comments.

@@ -27,19 +27,17 @@ int main(int argc, char** argv) {
 
     begin = omp_get_wtime();  // start the timing
 
-    // set seeds for the random number generator
-    // for both an x and y position
-    // Note: two seeds needed because we have to get a random
-    //       x, y position
+    // set seed for the random number generator
+    // for both an x and y position 
     std::random_device rd; 
-    unsigned long seedx = rd();
-    // unsigned long seedy = rd();
+    unsigned long seed = rd();
     
-    // create two generators and seed each one
+    // create one generator and seed it
     std::mt19937_64 generator;   //declaration of a generator
-    generator.seed(seedx);
+    generator.seed(seed);
     
-    // declare a distribution of real numbers that we want
+    // declare two distributions of real numbers that we want,
+    // one for x, one for y random value between 0.0 and 1.0
     std::uniform_real_distribution<double> distributionX(0.0,1.0);
     std::uniform_real_distribution<double> distributionY(0.0,1.0);
     

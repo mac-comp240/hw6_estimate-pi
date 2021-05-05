@@ -14,9 +14,9 @@
 # Notes: 1. you must set the number of times you want to run each test,
 #           the starting problem size, and the number of weak scaling tests.
 #           by including it on the command line.
-#       2. both trap-seq.c and trap-omp.c need to be updated to print out only
+#       2. both monteCarloPi_seq.c and monteCarloPi_omp.cpp need to be updated to print out only
 #          this line and ALL OTHER printf lines should be commented:
-#         printf("%lf\t",elapsed_time);
+#         printf("%lf\t",time_spent);
 num_times=$1
 initial_size=$2
 weak_scale_lines=$3

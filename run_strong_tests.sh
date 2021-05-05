@@ -10,9 +10,9 @@
 
 # Notes: 1. you must set the number of times you want to run each test
 #           by including it on the command line.
-#       2. both monteCarloPi_seq.cpp and monteCarloPit_omp.cpp need to be updated to print out only
+#       2. both monteCarloPi_seq.c and monteCarloPit_omp.cpp need to be updated to print out only
 #          this line and ALL OTHER printf lines should be commented:
-#         printf("%lf\t",elapsed_time);
+#         printf("%lf\t",time_spent);
 if [ -z "$1" ]
 then
     echo "No argument supplied, setting number of times to run tests to 1"
